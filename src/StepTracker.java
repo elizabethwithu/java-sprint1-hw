@@ -87,10 +87,10 @@ public class StepTracker {
             for (int stepsInDay : dayToData) {
                 if (stepsInDay > targetStepInDay) {
                     bestSequenceTemp++;
-                } else {
                     if (bestSequenceTemp > bestSequence) {
                         bestSequence = bestSequenceTemp;
                     }
+                } else {
                     bestSequenceTemp = 0;
                 }
             }

@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         StepTracker stepTracker = new StepTracker();
@@ -9,25 +10,25 @@ public class Main {
         while (command != 0) {
             if (command == 1) {
                 System.out.println("Введите номер месяца от 1 до 12, где 1 - январь, а 12 - декабрь");
-                int month = getValidMonth(scanner.nextInt());
+                int month = getValidMonth(scanner, scanner.nextInt());
 
                 System.out.println("Введите номер дня указанного месяца от 1 до 30");
-                int day = getValidDay(scanner.nextInt());
+                int day = getValidDay(scanner, scanner.nextInt());
 
                 System.out.println("Введите количество пройденных в указанный день шагов");
-                int steps = getValidSteps(scanner.nextInt());
+                int steps = getValidSteps(scanner, scanner.nextInt());
 
                 stepTracker.monthToData[month - 1].setStepInDay(day, steps);
 
             } else if (command == 2) {
                 System.out.println("Введите номер месяца от 1 до 12, где 1 - январь, а 12 - декабрь");
-                int month = getValidMonth(scanner.nextInt());
+                int month = getValidMonth(scanner, scanner.nextInt());
 
                 stepTracker.printMonthStats(month);
 
             } else if (command == 3) {
                 System.out.println("Введите новое целевое количество шагов");
-                stepTracker.targetStepInDay = getValidSteps(scanner.nextInt());
+                stepTracker.targetStepInDay = getValidSteps(scanner, scanner.nextInt());
 
             } else {
                 System.out.println("Введенной команды не существует");
@@ -47,8 +48,7 @@ public class Main {
         System.out.println(menu);
     }
 
-    private static int getValidMonth(int month) {
-        Scanner scanner = new Scanner(System.in);
+    private static int getValidMonth(Scanner scanner, int month) {
         while (month < 1 || month > 12) {
             System.out.println("Ошибка! Введите корректный номер месяца от 1 до 12");
             month = scanner.nextInt();
@@ -56,8 +56,7 @@ public class Main {
         return month;
     }
 
-    private static int getValidDay(int day) {
-        Scanner scanner = new Scanner(System.in);
+    private static int getValidDay(Scanner scanner, int day) {
         while (day < 1 || day > 30) {
             System.out.println("Ошибка! Введите корректный номер дня указанного месяца от 1 до 30");
             day = scanner.nextInt();
@@ -65,8 +64,7 @@ public class Main {
         return day;
     }
 
-    private static int getValidSteps(int steps) {
-        Scanner scanner = new Scanner(System.in);
+    private static int getValidSteps(Scanner scanner, int steps) {
         while (steps < 0) {
             System.out.println("Ошибка! Введите неотрицательное количество шагов");
             steps = scanner.nextInt();
